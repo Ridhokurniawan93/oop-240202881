@@ -89,13 +89,16 @@ public class HelloFunctional {
 
 ## Hasil Eksekusi
 - HelloProcedural
-<img width="1426" height="117" alt="Cuplikan layar 2025-10-10 225124" src="" />
+<img width="1912" height="1029" alt="HelloProcedural-240202882" src="https://github.com/user-attachments/assets/d6b0216a-bd6c-41e1-9354-4b5657ee0d78" />
+
 
 - HelloOOP
-<img width="1419" height="97" alt="Cuplikan layar 2025-10-10 224934" src="" />
+<img width="1919" height="1036" alt="HelloOOP-240202882" src="https://github.com/user-attachments/assets/a09dd922-6e80-4974-a0ac-632a3cad06f3" />
+
 
 - HelloFunctional
-<img width="1426" height="111" alt="Cuplikan layar 2025-10-10 222502" src="" />
+<img width="1914" height="1027" alt="HelloFunctional-240202882" src="https://github.com/user-attachments/assets/3d5782d2-d647-4c2e-b343-6b2d1b600000" />
+
 
 ---
 
