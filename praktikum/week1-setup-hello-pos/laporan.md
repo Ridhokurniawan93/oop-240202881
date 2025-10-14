@@ -39,8 +39,8 @@ Paradigma pemrograman adalah cara pandang dalam menyusun program:
 // HelloProcedural
 public class HelloProcedural {
     public static void main(String[] args) {
-        String nim = "240202881";
-        String name = "Ridho Kurniawan";
+        String nim = "240202882";
+        String name = "Risky Dimas Nugroho";
 
         System.out.println("Hello World, I am " + name + " - " + nim);
     }
@@ -65,7 +65,7 @@ class Student {
 
 public class HelloOOP {
     public static void main(String[] args) {
-        Student s = new Student("240202881", "Ridho Kurniawan");
+        Student s = new Student("240202882", "Risky Dimas Nugroho");
         s.introduce();
     }
 }
@@ -80,7 +80,7 @@ public class HelloFunctional {
         BiConsumer<String, String> introduce =
             (nim, name) -> System.out.println("Hello World, I am " + name + " - " + nim);
 
-        introduce.accept("240202881","Ridho Kurniawan");
+        introduce.accept("240202882","Risky Dimas Nugroho");
     }
 }
 ```
