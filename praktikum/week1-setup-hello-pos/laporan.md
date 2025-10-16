@@ -102,15 +102,18 @@ public class HelloFunctional {
 
 ## Analisis
 1. Cara Kerja Kode
+   
 •	Prosedural: Menjalankan instruksi secara berurutan dalam satu fungsi utama tanpa class.
 •	OOP: Menggunakan class Student untuk menggabungkan data dan perilaku dalam objek.
 •	Fungsional: Memakai lambda expression dan BiConsumer untuk menjalankan fungsi tanpa class tambahan.
 
-2. Perbedaan dengan Minggu Sebelumnya
+3. Perbedaan dengan Minggu Sebelumnya
+   
 •	Minggu ini fokus pada tiga paradigma (Prosedural, OOP, Fungsional), bukan sekadar menulis Hello World.
 •	Program lebih terstruktur dan memperkenalkan konsep objek serta fungsi murni.
 
-3. Kendala
+5. Kendala
+   
 •	Awalnya sulit membedakan penggunaan OOP dan fungsional.
 •	Solusinya dengan mempelajari dokumentasi java.util.function dan mencoba contoh implementasi sederhana.
 
@@ -121,19 +124,18 @@ public class HelloFunctional {
    - Paradigma prosedural cocok untuk program kecil dengan alur sederhana karena mudah dipahami dan cepat dibuat.
    - Paradigma OOP lebih terstruktur dan mudah dikembangkan berkat konsep class dan objek.
    - Paradigma Fungsional menghasilkan kode ringkas, mudah diuji, dan efisien untuk transformasi data.
-     
-    - Dengan memahami ketiga paradigma, mahasiswa dapat memilih pendekatan yang tepat sesuai kebutuhan proyek dan kompleksitas apliksi
+   - Dengan memahami ketiga paradigma mahasiswa dapat memilih pendekatan yang tepat dan sesuai kebutuhan proyek apkilasi
 
 ---
 
 ## Quiz
 1. Apakah OOP selalu lebih baik dari prosedural?  
    **Jawaban:**
-   Tidak. OOP dan prosedural memiliki kelebihan dan kelemahannya masing-masing. Prosedural lebih sederhana untuk program kecil, sedangkan OOP lebih baik untuk proyek besar yang membutuhkan struktur dan skalabilitas tinggi.
+       Tidak. OOP dan prosedural memiliki kelebihan dan kelemahannya masing-masing. Prosedural lebih sederhana untuk program kecil, sedangkan OOP lebih baik untuk proyek besar yang membutuhkan struktur dan skalabilitas tinggi.
 
 2. Kapan functional programming lebih cocok digunakan dibanding OOP  atau prosedural?    
    **Jawaban:**
-   Paradigma fungsional lebih cocok untuk proyek yang berfokus pada transformasi data, membutuhkan parallel processing, atau memerlukan hasil yang konsisten dan dapat diuji tanpa efek samping.
+       Paradigma fungsional lebih cocok untuk proyek yang berfokus pada transformasi data, membutuhkan parallel processing, atau memerlukan hasil yang konsisten dan dapat diuji tanpa efek samping.
    
 3. Bagaimana paradigma (prosedural, OOP, fungsional) memengaruhi maintainability dan scalability aplikasi?  
    **Jawaban:**
