@@ -149,12 +149,14 @@ public class HelloFunctional {
    
    • Fungsional: Maintainable tinggi karena fungsi murni mudah diuji dan digabungkan kembali tanpa mengubah state.
 
-5. Mengapa OOP lebih cocok untuk mengembangkan aplikasi POS dibanding prosedural?  
+4. Mengapa OOP lebih cocok untuk mengembangkan aplikasi POS dibanding prosedural?  
 **Jawaban:**
+
     Karena sistem POS terdiri dari banyak entitas (produk, pelanggan, transaksi, kasir) yang saling berinteraksi. OOP memudahkan representasi dan hubungan antar entitas tersebut melalui konsep objek dan relasinya, sehingga lebih mudah dikembangkan dan dikelola.
 
-6. Bagaimana paradigma fungsional dapat membantu mengurangi kode berulang (boilerplate code)?  
+5. imana paradigma fungsional dapat membantu mengurangi kode berulang (boilerplate code)?  
 **Jawaban:**
+
    paradigma fungsional mengurangi kode berulang dengan:
 •	Higher-order functions seperti map, filter, dan reduce.
 
