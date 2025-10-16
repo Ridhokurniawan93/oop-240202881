@@ -109,13 +109,13 @@ public class HelloFunctional {
 
 •	Fungsional: Memakai lambda expression dan BiConsumer untuk menjalankan fungsi tanpa class tambahan.
 
-3. Perbedaan dengan Minggu Sebelumnya
+2. Perbedaan dengan Minggu Sebelumnya
    
 •	Minggu ini fokus pada tiga paradigma (Prosedural, OOP, Fungsional), bukan sekadar menulis Hello World.
 
 •	Program lebih terstruktur dan memperkenalkan konsep objek serta fungsi murni.
 
-5. Kendala
+3. Kendala
    
 •	Awalnya sulit membedakan penggunaan OOP dan fungsional.
 
