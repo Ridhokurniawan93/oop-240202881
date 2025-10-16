@@ -101,58 +101,55 @@ public class HelloFunctional {
 ---
 
 ## Analisis
-- Cara kerja kode:
-   - Pada paradigma prosedural, kode hanya berupa urutan instruksi tanpa class.
-   - Pada paradigma OOP, kode dibungkus dalam class Student sehingga data (nim, name) dan perilaku (introduce()) disatukan.
-   - Pada paradigma fungsional, digunakan lambda expression dan functional interface (BiConsumer) untuk mencetak pesan.
-   
-- Perbedaan dengan minggu sebelumnya:
-   - Minggu ini mulai diperkenalkan perbedaan paradigma, tidak hanya menulis instruksi sederhana.
-   - Pendekatan OOP membuat program lebih terstruktur, sedangkan functional membuat kode lebih ringkas.
-- Kendala:
-   - Awalnya bingung membedakan kapan harus pakai class vs lambda.
-   - Solusi: membaca dokumentasi Java tentang java.util.function dan contoh penggunaan OOP sederhana. 
+1. Cara Kerja Kode
+•	Prosedural: Menjalankan instruksi secara berurutan dalam satu fungsi utama tanpa class.
+•	OOP: Menggunakan class Student untuk menggabungkan data dan perilaku dalam objek.
+•	Fungsional: Memakai lambda expression dan BiConsumer untuk menjalankan fungsi tanpa class tambahan.
+
+2. Perbedaan dengan Minggu Sebelumnya
+•	Minggu ini fokus pada tiga paradigma (Prosedural, OOP, Fungsional), bukan sekadar menulis Hello World.
+•	Program lebih terstruktur dan memperkenalkan konsep objek serta fungsi murni.
+
+3. Kendala
+•	Awalnya sulit membedakan penggunaan OOP dan fungsional.
+•	Solusinya dengan mempelajari dokumentasi java.util.function dan mencoba contoh implementasi sederhana.
+
 
 ---
 
 ## Kesimpulan
-- Paradigma prosedural cocok untuk program sederhana dan cepat dibuat.
-- Paradigma OOP memberikan struktur yang jelas dengan memanfaatkan class dan object, sehingga program lebih mudah dikembangkan.
-- Paradigma fungsional membuat kode lebih ringkas dan mengurangi boilerplate dengan memanfaatkan lambda expression.
-- Dengan memahami ketiga paradigma, mahasiswa dapat memilih pendekatan yang tepat sesuai kebutuhan aplikasi.
+   - Paradigma prosedural cocok untuk program kecil dengan alur sederhana karena mudah dipahami dan cepat dibuat.
+   - Paradigma OOP lebih terstruktur dan mudah dikembangkan berkat konsep class dan objek.
+   - Paradigma Fungsional menghasilkan kode ringkas, mudah diuji, dan efisien untuk transformasi data.
+   -  Dengan memahami ketiga paradigma, mahasiswa dapat memilih pendekatan yang tepat sesuai kebutuhan proyek dan kompleksitas apliksi
 
 ---
 
 ## Quiz
 1. Apakah OOP selalu lebih baik dari prosedural?  
    **Jawaban:**
-   Tidak selalu. OOP lebih baik ketika kita membutuhkan representasi dunia nyata dengan objek, enkapsulasi data, dan hubungan antar-entitas yang kompleks. Namun, untuk aplikasi kecil, sederhana, atau tugas sekali jalan (script), paradigma prosedural lebih cepat, ringan, dan mudah dipahami tanpa overhead membuat class dan objek.
+   Tidak. OOP dan prosedural memiliki kelebihan dan kelemahannya masing-masing. Prosedural lebih sederhana untuk program kecil, sedangkan OOP lebih baik untuk proyek besar yang membutuhkan struktur dan skalabilitas tinggi.
 
 2. Kapan functional programming lebih cocok digunakan dibanding OOP  atau prosedural?    
    **Jawaban:**
-   Functional programming lebih cocok digunakan saat:
-   - Kita bekerja dengan data yang harus diproses secara paralel/konkuren (karena fungsi murni lebih mudah diparalelkan).
-   - Lingkungan membutuhkan reliabilitas tinggi dan minim bug (karena tidak ada *side effect*).
-   - Kasus seperti data transformation (ETL), pemrosesan koleksi besar, AI/ML pipeline, atau sistem event-driven.
-   - Kita ingin mengurangi kompleksitas logika dengan komposisi fungsi ketimbang hierarki kelas yang dalam.  
-
+   Paradigma fungsional lebih cocok untuk proyek yang berfokus pada transformasi data, membutuhkan parallel processing, atau memerlukan hasil yang konsisten dan dapat diuji tanpa efek samping.
+   
 3. Bagaimana paradigma (prosedural, OOP, fungsional) memengaruhi maintainability dan scalability aplikasi?  
    **Jawaban:**
-   - **Prosedural:** Mudah dipahami untuk program kecil, tapi sulit di-*maintain* ketika aplikasi membesar karena logika dan data sering bercampur. Skalabilitas rendah.  
-   - **OOP:** Lebih maintainable untuk sistem besar karena ada struktur class, encapsulation, inheritance, dan polymorphism. Skalabilitas tinggi karena mudah menambah fitur dengan objek baru.  
-   - **Functional:** Maintainability tinggi untuk logika kompleks, karena fungsi murni lebih mudah diuji dan dirangkai ulang. Skalabilitas baik di sistem berbasis data atau yang membutuhkan *concurrency*. 
+   • Prosedural: Mudah untuk aplikasi kecil, tapi sulit dikembangkan karena struktur tidak modular.
+   • OOP: Paling maintainable dan scalable karena kode terorganisir melalui class dan objek.
+   • Fungsional: Maintainable tinggi karena fungsi murni mudah diuji dan digabungkan kembali tanpa mengubah state.
 
 4. Mengapa OOP lebih cocok untuk mengembangkan aplikasi POS dibanding prosedural?  
 **Jawaban:**
-   Karena aplikasi POS (Point of Sale) memiliki banyak entitas berbeda yang saling berhubungan seperti `Produk`, `Transaksi`, `Kasir`, `Pelanggan`, dan `Pembayaran`. Dengan OOP:
-   - Data dan perilaku bisa disatukan dalam class (misalnya `Transaksi` punya method `hitungTotal()`).
-   - Relasi antar-objek jelas (misalnya `Transaksi` berisi daftar `Produk`).
-   - Kode lebih terstruktur, mudah dikembangkan, dan di-*maintain* seiring bertambahnya fitur.
+    Karena sistem POS terdiri dari banyak entitas (produk, pelanggan, transaksi, kasir) yang saling berinteraksi. OOP memudahkan representasi dan hubungan antar entitas tersebut melalui konsep objek dan relasinya, sehingga lebih mudah dikembangkan dan dikelola.
 
 5. Bagaimana paradigma fungsional dapat membantu mengurangi kode berulang (boilerplate code)?  
 **Jawaban:**
-   Paradigma fungsional mengurangi boilerplate dengan:
-   - **Higher-order function** → kita bisa membuat fungsi umum (misalnya `map`, `filter`, `reduce`) yang bisa dipakai ulang untuk berbagai kebutuhan tanpa menulis loop berulang.  
-   - **Immutability & pure function** → memisahkan logika dari state, sehingga fungsi bisa dipakai ulang tanpa bergantung pada konteks.  
-   - **Function composition** → membangun fungsi kompleks dari fungsi kecil tanpa duplikasi kode.  
+   paradigma fungsional mengurangi kode berulang dengan:
+•	Higher-order functions seperti map, filter, dan reduce.
+•	Immutability dan pure function yang mencegah dependensi antar bagian kode.
+•	Function composition yang memungkinkan penggabungan fungsi kecil menjadi operasi kompleks tanpa duplikasi logika.
+
+
 
