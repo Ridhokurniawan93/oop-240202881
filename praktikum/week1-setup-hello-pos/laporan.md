@@ -121,7 +121,7 @@ public class HelloFunctional {
    - Paradigma prosedural cocok untuk program kecil dengan alur sederhana karena mudah dipahami dan cepat dibuat.
    - Paradigma OOP lebih terstruktur dan mudah dikembangkan berkat konsep class dan objek.
    - Paradigma Fungsional menghasilkan kode ringkas, mudah diuji, dan efisien untuk transformasi data.
-   -  Dengan memahami ketiga paradigma, mahasiswa dapat memilih pendekatan yang tepat sesuai kebutuhan proyek dan kompleksitas apliksi
+ Dengan memahami ketiga paradigma, mahasiswa dapat memilih pendekatan yang tepat sesuai kebutuhan proyek dan kompleksitas apliksi
 
 ---
 
