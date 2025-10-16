@@ -158,11 +158,11 @@ public class HelloFunctional {
 **Jawaban:**
 
    paradigma fungsional mengurangi kode berulang dengan:
-•	Higher-order functions seperti map, filter, dan reduce.
+   •  Higher-order functions seperti map, filter, dan reduce.
 
-•	Immutability dan pure function yang mencegah dependensi antar bagian kode.
+   •  Immutability dan pure function yang mencegah dependensi antar bagian kode.
 
-•	Function composition yang memungkinkan penggabungan fungsi kecil menjadi operasi kompleks tanpa duplikasi logika.
+   •  Function composition yang memungkinkan penggabungan fungsi kecil menjadi operasi kompleks tanpa duplikasi logika.
 
 
 
