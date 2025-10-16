@@ -154,7 +154,7 @@ public class HelloFunctional {
 
     Karena sistem POS terdiri dari banyak entitas (produk, pelanggan, transaksi, kasir) yang saling berinteraksi. OOP memudahkan representasi dan hubungan antar entitas tersebut melalui konsep objek dan relasinya, sehingga lebih mudah dikembangkan dan dikelola.
 
-5. imana paradigma fungsional dapat membantu mengurangi kode berulang (boilerplate code)?  
+5. Bagaimana paradigma fungsional dapat membantu mengurangi kode berulang (boilerplate code)?  
 **Jawaban:**
 
    paradigma fungsional mengurangi kode berulang dengan:
