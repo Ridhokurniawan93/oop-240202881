@@ -2,7 +2,7 @@
 Topik: "Pengenalan Paradigma dan Setup Proyek"
 
 ## Identitas
-- Nama  : Risky Dimas Nugroho
+- Nama  : Risky Dimas Nugroh
 - NIM   : 240202882
 - Kelas : 3IKRB
 
