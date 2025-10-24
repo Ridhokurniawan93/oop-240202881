@@ -48,9 +48,9 @@ Inheritance adalah mekanisme dalam OOP yang memungkinkan suatu class mewarisi at
 
 ## Kode Program
 ```java
-        Benih b = new Benih("BNH-001", "Benih Padi IR64", 25000, 30, "IR64");
-        Pupuk p = new Pupuk("PPK-101", "Pupuk Urea", 350000, 65, "Urea");
-        AlatPertanian a = new AlatPertanian("ALT-501", "Cangkul Baja", 90000, 20, "Baja");
+        Benih b = new Benih("BNH-001", "Benih Padi IR64", 25000, 100, "IR64");
+        Pupuk p = new Pupuk("PPK-101", "Pupuk Urea", 350000, 40, "Urea");
+        AlatPertanian a = new AlatPertanian("ALT-501", "Cangkul Baja", 90000, 15, "Baja");
 
         System.out.println("------------------------------------------");
         System.out.println(b.deskripsi());
