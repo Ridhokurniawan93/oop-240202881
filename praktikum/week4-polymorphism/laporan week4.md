@@ -144,6 +144,7 @@ Praktikum ini menegaskan bahwa Polymorphism adalah konsep sentral dalam OOP yang
 
 3. Berikan contoh kasus polymorphism dalam sistem POS selain produk pertanian.
    **Jawaban:**
+   
    Sistem Pembayaran Digital:
    
 Dalam sistem pembayaran, class MetodePembayaran dapat menjadi superclass. Subclass-nya dapat mencakup KartuKredit, TransferBank, dan DompetDigital.
