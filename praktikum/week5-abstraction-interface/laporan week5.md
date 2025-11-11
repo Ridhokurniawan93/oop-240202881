@@ -117,12 +117,13 @@ Mendefinisikan kerangka dasar pembayaran dengan method abstrak biaya() dan prose
 
 
 - **Perbedaan dengan Minggu Sebelumnya:**  
-  | Aspek                | Minggu 4 (Polymorphism)                                                              | Minggu 5 (Abstraction & Interface)                                                |
-| :------------------- | :----------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------- |
-| **Fokus Konsep**     | Overriding dan Overloading untuk menunjukkan perilaku berbeda pada subclass          | Pemisahan antara kontrak perilaku dan implementasinya                             |
-| **Tujuan**           | Menunjukkan bahwa objek berbeda dapat memiliki method yang sama tetapi hasil berbeda | Menunjukkan bagaimana merancang struktur kelas yang fleksibel dan dapat diperluas |
-| **Struktur**         | Semua kelas konkret, tidak ada abstract class atau interface                         | Menggunakan kombinasi abstract class + interface                                  |
-| **Kelebihan Konsep** | Mempermudah penggunaan method yang sama untuk berbagai objek                         | Mempermudah desain sistem besar dengan peran dan tanggung jawab yang jelas        |
+ | Aspek | Minggu 4 (Polymorphism) | Minggu 5 (Abstraction & Interface) |
+|:--|:--|:--|
+| **Fokus Konsep** | Overriding dan Overloading untuk menunjukkan perilaku berbeda pada subclass | Pemisahan antara kontrak perilaku dan implementasinya |
+| **Tujuan** | Menunjukkan bahwa objek berbeda dapat memiliki method yang sama tetapi hasil berbeda | Menunjukkan bagaimana merancang struktur kelas yang fleksibel dan dapat diperluas |
+| **Struktur** | Semua kelas konkret, tidak ada abstract class atau interface | Menggunakan kombinasi abstract class + interface |
+| **Kelebihan Konsep** | Mempermudah penggunaan method yang sama untuk berbagai objek | Mempermudah desain sistem besar dengan peran dan tanggung jawab yang jelas |
+
 
 
 
