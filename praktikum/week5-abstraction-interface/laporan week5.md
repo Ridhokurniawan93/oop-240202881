@@ -29,7 +29,7 @@ Dalam konteks Agri-POS, **Pembayaran** dapat dimodelkan sebagai abstract class d
 
 ## Langkah Praktikum
 1. **Abstract Class – Pembayaran**
-   - Buat `Pembayaran` (abstract) dengan field `invoiceNo`, `total` dan method:
+  - Buat `Pembayaran` (abstract) dengan field `invoiceNo`, `total` dan method:
      - `double biaya()` (abstrak) → biaya tambahan (fee).
      - `boolean prosesPembayaran()` (abstrak) → mengembalikan status berhasil/gagal.
      - `double totalBayar()` (konkrit) → `return total + biaya();`.
@@ -92,32 +92,44 @@ Abstraksi memungkinkan pemisahan antara definisi perilaku (kontrak) dan implemen
 Kelas Pembayaran dijadikan sebagai abstract class karena semua jenis pembayaran memiliki struktur dan atribut dasar yang sama (invoiceNo, total, biaya(), prosesPembayaran()), namun implementasinya berbeda.
 Sementara itu, interface seperti Validatable dan Receiptable berfungsi untuk menambahkan kemampuan spesifik seperti validasi OTP dan pencetakan struk tanpa mengganggu hierarki utama.
 
-- **Cara Kerja Program:**  
+   - **Cara Kerja Program:**  
  1.  Abstract Class Pembayaran:
-Mendefinisikan kerangka dasar pembayaran dengan method abstrak biaya() dan prosesPembayaran(), serta method konkret totalBayar().
+    
+      Mendefinisikan kerangka dasar pembayaran dengan method abstrak biaya() dan prosesPembayaran(), serta method konkret totalbayar()
 
 2.  Subclass Konkret:
-•	Cash: Tidak memiliki biaya tambahan (biaya = 0), dan pembayaran berhasil jika tunai cukup.
-•	EWallet: Memiliki biaya 1,5% dan membutuhkan validasi (implementasi Validatable).
-•	TransferBank: Biaya tetap Rp3.500, dan dianggap selalu berhasil.
+   
+    -	Cash: Tidak memiliki biaya tambahan (biaya = 0), dan pembayaran berhasil jika tunai cukup.
+
+    -	EWallet: Memiliki biaya 1,5% dan membutuhkan validasi (implementasi Validatable).
+
+    -	TransferBank: Biaya tetap Rp3.500, dan dianggap selalu berhasil.
 
 3.  Interface:
-•	Validatable: Digunakan untuk memvalidasi pembayaran digital (contohnya OTP).
-•	Receiptable: Digunakan untuk mencetak struk pembayaran.
+
+    -	Validatable: Digunakan untuk memvalidasi pembayaran digital (contohnya OTP).
+
+    -	Receiptable: Digunakan untuk mencetak struk pembayaran.
 
 4.  Multiple Inheritance:
-•	EWallet mengimplementasikan dua interface (Validatable dan Receiptable).
-•	Cash dan TransferBank hanya mengimplementasikan Receiptable.
+   
+    -	EWallet mengimplementasikan dua interface (Validatable dan Receiptable).
+
+    -	Cash dan TransferBank hanya mengimplementasikan Receiptable.
 
 5.  Kelas MainAbstraction:
-•	Membuat tiga objek pembayaran (Cash, EWallet, TransferBank).
-•	Memanggil method cetakStruk() melalui referensi polymorphic (Pembayaran).
-•	Menampilkan hasil transaksi dan identitas pembuat dengan CreditBy.print().
+    
+    -	Membuat tiga objek pembayaran (Cash, EWallet, TransferBank).
+
+    -	Memanggil method cetakStruk() melalui referensi polymorphic (Pembayaran).
+
+    -	Menampilkan hasil transaksi dan identitas pembuat dengan CreditBy.print().
 
 
 
-- **Perbedaan dengan Minggu Sebelumnya:**  
- | Aspek | Minggu 4 (Polymorphism) | Minggu 5 (Abstraction & Interface) |
+-   ### Perbedaan dengan Minggu Sebelumnya
+
+| Aspek | Minggu 4 (Polymorphism) | Minggu 5 (Abstraction & Interface) |
 |:--|:--|:--|
 | **Fokus Konsep** | Overriding dan Overloading untuk menunjukkan perilaku berbeda pada subclass | Pemisahan antara kontrak perilaku dan implementasinya |
 | **Tujuan** | Menunjukkan bahwa objek berbeda dapat memiliki method yang sama tetapi hasil berbeda | Menunjukkan bagaimana merancang struktur kelas yang fleksibel dan dapat diperluas |
@@ -127,21 +139,30 @@ Mendefinisikan kerangka dasar pembayaran dengan method abstrak biaya() dan prose
 
 
 
+
 - **Kendala dan Solusi:**  
-  Kendala utama adalah memastikan setiap subclass mengimplementasikan semua method abstrak dan kontrak interface dengan konsisten. Selain itu, diperlukan penyesuaian agar output `cetakStruk()` memiliki format seragam. Kendala tersebut diatasi dengan mendefinisikan template format yang sama di setiap subclass serta melakukan uji eksekusi untuk memverifikasi hasil.
+  Kendala yang dihadapi adalah beberapa subclass belum mengimplementasikan semua method abstrak dan interface, serta format cetakStruk() yang tidak seragam. Solusinya dengan melengkapi seluruh implementasi method yang wajib dan menyamakan format output menggunakan template yang konsisten. Selain itu, kesalahan kecil pada perhitungan biaya diperbaiki dengan pengujian ulang tiap subclass
 ---
 
 ## Kesimpulan
-Dengan menggunakan **abstract class dan interface**, kode menjadi lebih fleksibel, terstruktur, dan mudah dikembangkan. Penambahan fitur baru seperti `TransferBank` dapat dilakukan tanpa memodifikasi kelas dasar.
+Penggunaan **abstract class dan interface**, memungkinkan desain program yang. 
+ -	 Lebih  **terstruktur dan fleksibel**.
+ -	 Mudah **diperluas** tanpa mengubah kode yang sudah ada.
+ -	 Mendukung **multiple inheritance** secara aman.
+
+      Dalam kasus Agri-POS, pendekatan ini menjadikan sistem pembayaran modular, di mana setiap metode pembayaran dapat memiliki logika sendiri, namun tetap mengikuti kontrak umum dari Pembayaran.
 
 ---
 
 ## Quiz
 1. Jelaskan perbedaan konsep dan penggunaan **abstract class** dan **interface**.  
-   **Jawaban:** Abstract class digunakan untuk mendefinisikan perilaku dasar dengan kemungkinan memiliki implementasi, sedangkan interface hanya mendefinisikan kontrak perilaku tanpa implementasi konkret.
+   **Jawaban:**  Abstract class digunakan ketika ada perilaku dasar yang sama dan sebagian implementasi sudah diketahui.
+Interface digunakan untuk mendefinisikan kontrak atau kemampuan tambahan lintas kelas tanpa membawa state.
 
 2. Mengapa **multiple inheritance** lebih aman dilakukan dengan interface pada Java?  
-   **Jawaban:** Karena interface tidak membawa state, sehingga tidak menimbulkan konflik pewarisan ganda seperti pada class.
+   **Jawaban:** Karena interface tidak menyimpan state atau implementasi konkret, sehingga tidak menimbulkan konflik pewarisan seperti pada class ganda.
 
 3. Pada contoh Agri-POS, bagian mana yang **paling tepat** menjadi abstract class dan mana yang menjadi interface? Jelaskan alasannya.  
-   **Jawaban:** `Pembayaran` menjadi abstract class karena memiliki state dan perilaku dasar bersama, sedangkan `Validatable` dan `Receiptable` menjadi interface karena hanya mendefinisikan kontrak fungsi tambahan lintas tipe pembayaran.
+   **Jawaban:** Pembayaran → **abstract class** karena memiliki atribut dan perilaku dasar bersama.
+   
+   Validatable dan Receiptable →**interface** karena hanya mendefinisikan kontrak tambahan (validasi dan cetak struk) yang dapat digunakan oleh berbagai jenis pembayaran.
