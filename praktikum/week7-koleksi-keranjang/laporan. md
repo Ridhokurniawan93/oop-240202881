@@ -95,7 +95,6 @@ public class MainCart {
     }
 }
 
-
 ```
 
 ---
@@ -129,11 +128,11 @@ Java Collections Framework efektif untuk mengelola data dinamis seperti keranjan
 
    **Jawaban:** **List** menyimpan elemen secara berurutan dan memperbolehkan data duplikat, **Map** menyimpan data dalam pasangan key–value, sedangkan **Set** hanya menyimpan elemen unik tanpa duplikasi.
    
-2. **Mengapa ArrayList cocok digunakan untuk keranjang belanja sederhana?**
+3. **Mengapa ArrayList cocok digunakan untuk keranjang belanja sederhana?**
 
    **Jawaban:** ArrayList cocok digunakan untuk keranjang belanja sederhana karena menyimpan data secara berurutan, mendukung penambahan dan penghapusan item dengan mudah
    
-3. **Bagaimana struktur Set mencegah duplikasi data?**
+5. **Bagaimana struktur Set mencegah duplikasi data?**
 
    **Jawaban:** Struktur Set mencegah duplikasi data dengan tidak mengizinkan elemen yang sama disimpan lebih dari satu kali
 
