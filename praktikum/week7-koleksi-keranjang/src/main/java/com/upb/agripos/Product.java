@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package com.upb.agripos;
 
 public class Product {
@@ -20,3 +21,27 @@ public class Product {
         return code + " - " + name + " (Rp" + price + ")";
     }
 }
+=======
+package com.upb.agripos;
+
+public class Product {
+    private String code;
+    private String name;
+    private double price;
+
+    public Product(String code, String name, double price) {
+        this.code = code;
+        this.name = name;
+        this.price = price;
+    }
+
+    public String getCode() { return code; }
+    public String getName() { return name; }
+    public double getPrice() { return price; }
+
+    @Override
+    public String toString() {
+        return code + " - " + name + " (Rp" + price + ")";
+    }
+}
+>>>>>>> d6de52632435290cbf8abc21dc61f833d9b048bb
