@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "MainApp",
+            "request": "launch",
+            "mainClass": "com.upb.agripos.MainApp",
+            "projectName": "com.upb-agripos"
+        },
+        {
+            "type": "java",
+            "name": "AppMVC",
+            "request": "launch",
+            "mainClass": "com.upb.agripos.AppMVC",
+            "projectName": "com.upb-agripos-week10"
+        },
+        {
+            "type": "java",
             "name": "Launcher",
             "request": "launch",
             "mainClass": "com.upb.agripos.Launcher",
