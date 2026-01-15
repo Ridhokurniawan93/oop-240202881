@@ -270,6 +270,7 @@ Screenshot hasil eksekusi tersimpan di `screenshots`
 ## Analisis
 
 Penerapan pola `DAO` pada praktikum ini membuat struktur kode menjadi lebih terorganisir. Class utama tidak berisi query SQL secara langsung, melainkan memanggil method DAO. Penggunaan PreparedStatement memberikan perlindungan terhadap SQL injection serta meningkatkan efisiensi eksekusi query. Dibandingkan praktikum sebelumnya yang berfokus pada konsep OOP dan design pattern, praktikum ini menitikberatkan pada integrasi aplikasi Java dengan database nyata.
+
 ---
 
 ## Kesimpulan
