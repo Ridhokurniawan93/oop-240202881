@@ -1,6 +1,7 @@
 package com.upb.agripos.model;
 
 public class Product {
+
     private String code;
     private String name;
     private double price;
@@ -18,7 +19,5 @@ public class Product {
     public double getPrice() { return price; }
     public int getStock() { return stock; }
 
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
+    public void setStock(int stock) { this.stock = stock; }
 }

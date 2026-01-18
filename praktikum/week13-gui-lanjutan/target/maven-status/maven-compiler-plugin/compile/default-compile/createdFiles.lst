@@ -1,4 +1,3 @@
-com\upb\agripos\view\ProductFormView.class
 com\upb\agripos\AppJavaFX.class
 com\upb\agripos\dao\ProductDAO.class
 com\upb\agripos\service\ProductService.class

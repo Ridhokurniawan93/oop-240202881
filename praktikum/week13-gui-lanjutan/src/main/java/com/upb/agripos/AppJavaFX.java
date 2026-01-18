@@ -1,6 +1,6 @@
 package com.upb.agripos;
 
-import com.upb.agripos.view.ProductFormView;
+import com.upb.agripos.view.ProductTableView;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -10,7 +10,7 @@ public class AppJavaFX extends Application {
 
     @Override
     public void start(Stage stage) {
-        ProductFormView view = new ProductFormView();
+        ProductTableView view = new ProductTableView();
         Scene scene = new Scene(view.getView(), 800, 500);
 
         stage.setTitle("Agri-POS Week 13 - Ridho Kurniawan (240202881)");

@@ -12,12 +12,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class ProductFormView extends VBox {
+public class ProductTableView extends VBox {
 
     private TableView<Product> table;
     private ObservableList<Product> productList;
 
-    public ProductFormView() {
+    public ProductTableView() {
         setPadding(new Insets(10));
         setSpacing(10);
 

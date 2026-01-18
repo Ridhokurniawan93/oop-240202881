@@ -5,7 +5,8 @@ import java.util.List;
 import com.upb.agripos.model.Product;
 
 public interface ProductDAO {
-    void insert(Product product);
-    void delete(String code);
+
+    void save(Product product);
     List<Product> findAll();
+    void delete(String code); // ← WAJIB ADA
 }

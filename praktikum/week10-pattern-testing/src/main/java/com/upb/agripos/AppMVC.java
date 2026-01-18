@@ -1,15 +1,25 @@
 package com.upb.agripos;
 
-import com.upb.agripos.controller.ProductController;
 import com.upb.agripos.model.Product;
-import com.upb.agripos.view.ConsoleView;
 
 public class AppMVC {
+
     public static void main(String[] args) {
-        System.out.println("Hello, I am Ridho Kurniawan-240202881 (Week10)");
-        Product product = new Product("P01", "Pupuk Organik");
-        ConsoleView view = new ConsoleView();
-        ProductController controller = new ProductController(product, view);
-        controller.showProduct();
+
+        // Identitas Praktikum (Bab 1)
+        System.out.println("Hello World, I am Ridho-240202881");
+
+        // Membuat object Product (PAKAI constructor kosong)
+        Product product = new Product();
+
+        // Set nilai menggunakan setter
+        product.setCode("P001");
+        product.setName("Beras Premium");
+        product.setPrice(12000);
+
+        // Tampilkan data ke console
+        System.out.println("Kode Produk  : " + product.getCode());
+        System.out.println("Nama Produk  : " + product.getName());
+        System.out.println("Harga Produk : " + product.getPrice());
     }
 }
