@@ -1,14 +1,30 @@
 package com.upb.agripos.service;
 
-import com.upb.agripos.dao.JdbcUserDAO;
-import com.upb.agripos.dao.UserDAO;
-import com.upb.agripos.model.User;
-
 public class AuthService {
 
-    private final UserDAO userDAO = new JdbcUserDAO();
+    // Login yang mengembalikan pesan error detail
+    public String login(String username, String password, String role) {
+        
+        if ("KASIR".equals(role)) {
+            if (!username.equals("kasir")) {
+                return "❌ Username salah";
+            }
+            if (!password.equals("kasir123")) {
+                return "❌ Password salah";
+            }
+            return "SUCCESS";
+        }
 
-    public User login(String username, String password) {
-        return userDAO.login(username, password);
+        if ("ADMIN".equals(role)) {
+            if (!username.equals("admin")) {
+                return "❌ Username salah";
+            }
+            if (!password.equals("admin123")) {
+                return "❌ Password salah";
+            }
+            return "SUCCESS";
+        }
+
+        return "❌ Login gagal";
     }
 }

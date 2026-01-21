@@ -1,13 +1,17 @@
 package com.upb.agripos.model;
 
-public class CartItem {
+public class ItemTransaksi {
 
-    private final Product product;
-    private final int qty;
+    private Product product;
+    private int qty;
 
-    public CartItem(Product product, int qty) {
+    public ItemTransaksi(Product product, int qty) {
         this.product = product;
         this.qty = qty;
+    }
+
+    public double getSubtotal() {
+        return product.getPrice() * qty;
     }
 
     public Product getProduct() {
@@ -16,9 +20,5 @@ public class CartItem {
 
     public int getQty() {
         return qty;
-    }
-
-    public double getSubtotal() {
-        return product.getPrice() * qty;
     }
 }

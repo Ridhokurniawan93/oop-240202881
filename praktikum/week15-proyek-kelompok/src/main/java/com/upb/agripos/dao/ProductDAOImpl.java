@@ -7,11 +7,11 @@ import com.upb.agripos.model.Product;
 
 public class ProductDAOImpl implements ProductDAO {
 
-    private static final List<Product> products = new ArrayList<>();
+    private final List<Product> products = new ArrayList<>();
 
-    static {
-        products.add(new Product("P001", "Beras", 10000, 10));
-        products.add(new Product("P002", "Jagung", 8000, 5));
+    @Override
+    public void save(Product product) {
+        products.add(product);
     }
 
     @Override
@@ -25,10 +25,5 @@ public class ProductDAOImpl implements ProductDAO {
     @Override
     public List<Product> findAll() {
         return products;
-    }
-
-    @Override
-    public void update(Product product) {
-        // in-memory, tidak perlu implementasi
     }
 }

@@ -5,7 +5,7 @@ import java.util.List;
 import com.upb.agripos.model.Product;
 
 public interface ProductDAO {
+    void save(Product product);
     Product findById(String id);
     List<Product> findAll();
-    void update(Product product);
 }

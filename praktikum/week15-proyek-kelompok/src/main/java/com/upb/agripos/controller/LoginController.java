@@ -1,45 +1,44 @@
 package com.upb.agripos.controller;
 
+import com.upb.agripos.service.AuthService;
 import com.upb.agripos.view.AdminView;
 import com.upb.agripos.view.KasirView;
 
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 public class LoginController {
 
     private final Stage stage;
+    private final AuthService authService = new AuthService();
+    private Runnable onLoginFailure = () -> {};
 
     public LoginController(Stage stage) {
         this.stage = stage;
     }
 
-    public void login(String username, String password, String selectedRole) {
+    public void setOnLoginFailure(Runnable callback) {
+        this.onLoginFailure = callback;
+    }
 
-        if (selectedRole.equals("ADMIN")) {
-            // Admin login validation
-            if (username.equals("admin") && password.equals("admin123")) {
-                stage.setScene(new Scene(new AdminView("ADMIN").getView(), 500, 400));
-            } else {
-                showLoginError();
+    public String login(String username, String password, String role) {
+
+        String result = authService.login(username, password, role);
+
+        if ("SUCCESS".equals(result)) {
+            if ("KASIR".equals(role)) {
+                KasirView kasirView = new KasirView(stage, username);
+                kasirView.show();
+            } else if ("ADMIN".equals(role)) {
+                AdminView adminView = new AdminView(stage, username);
+                adminView.show();
             }
-        } 
-        else if (selectedRole.equals("KASIR")) {
-            // Kasir login validation
-            if (username.equals("kasir") && password.equals("kasir123")) {
-                stage.setScene(new Scene(new KasirView("KASIR").getView(), 500, 400));
-            } else {
-                showLoginError();
-            }
+            return null;
+        } else {
+            return result;
         }
     }
 
-    private void showLoginError() {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Login Gagal");
-        alert.setHeaderText(null);
-        alert.setContentText("Username atau password salah!");
-        alert.showAndWait();
+    public Stage getStage() {
+        return stage;
     }
 }

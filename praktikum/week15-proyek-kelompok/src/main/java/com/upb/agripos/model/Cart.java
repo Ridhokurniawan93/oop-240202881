@@ -5,21 +5,23 @@ import java.util.List;
 
 public class Cart {
 
-    private final List<CartItem> items = new ArrayList<>();
+    private final List<ItemTransaksi> items = new ArrayList<>();
 
-    public void addItem(Product product, int quantity) {
-        items.add(new CartItem(product, quantity));
+    public void addItem(Product product, int qty) {
+        items.add(new ItemTransaksi(product, qty));
     }
 
-    public List<CartItem> getItems() {
+    public List<ItemTransaksi> getItems() {
         return items;
     }
 
-    public double getTotalPrice() {
-        double total = 0;
-        for (CartItem item : items) {
-            total += item.getSubtotal();
-        }
-        return total;
+    public double getTotal() {
+        return items.stream()
+                .mapToDouble(ItemTransaksi::getSubtotal)
+                .sum();
+    }
+
+    public void clear() {
+        items.clear();
     }
 }

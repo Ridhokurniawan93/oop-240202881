@@ -1,13 +1,13 @@
 package com.upb.agripos.controller;
 
+import java.util.List;
+
 import com.upb.agripos.model.Product;
 import com.upb.agripos.service.ProductService;
 
-import java.util.List;
-
 public class ProductController {
 
-    private ProductService productService;
+    private final ProductService productService;
 
     public ProductController(ProductService productService) {
         this.productService = productService;
