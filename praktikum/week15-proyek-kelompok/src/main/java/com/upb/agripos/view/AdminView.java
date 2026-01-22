@@ -43,6 +43,10 @@ public class AdminView {
     private final ObservableList<Product> products = dataRepository.getProducts();
     private final ObservableList<Promo> promos = dataRepository.getPromos();
     private final ObservableList<Transaction> transactions = dataRepository.getTransactions();
+    
+    // Track active menu button
+    private Button activeMenuButton = null;
+    private String activeMenuColor = "#ff9500";
 
     public AdminView(Stage stage, String username) {
         this.stage = stage;
@@ -97,6 +101,7 @@ public class AdminView {
         
         // Dashboard Button
         Button dashboardBtn = createMenuButton("📊 Dashboard", "#ff9500", e -> showDashboard());
+        activeMenuButton = dashboardBtn;
         
         // Produk Button
         Button produkBtn = createMenuButton("📦 Produk", "#34495e", e -> showProductManagement());
@@ -130,23 +135,54 @@ public class AdminView {
         btn.setStyle("-fx-font-size: 13; -fx-padding: 12; -fx-background-color: " + color + "; -fx-text-fill: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-font-weight: bold; -fx-cursor: hand;");
         btn.setPrefWidth(160);
         btn.setWrapText(true);
-        btn.setOnAction(action);
+        
+        btn.setOnAction(e -> {
+            // Update active menu button
+            setActiveMenuButton(btn, color);
+            action.handle(e);
+        });
         
         btn.setOnMouseEntered(e -> {
-            if (color.equals("#e74c3c")) {
-                btn.setStyle("-fx-font-size: 13; -fx-padding: 12; -fx-background-color: #c0392b; -fx-text-fill: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-font-weight: bold; -fx-cursor: hand;");
-            } else if (color.equals("#ff9500")) {
-                btn.setStyle("-fx-font-size: 13; -fx-padding: 12; -fx-background-color: #188732; -fx-text-fill: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-font-weight: bold; -fx-cursor: hand;");
-            } else {
-                btn.setStyle("-fx-font-size: 13; -fx-padding: 12; -fx-background-color: #2c3e50; -fx-text-fill: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-font-weight: bold; -fx-cursor: hand; -fx-border-color: #ff9500; -fx-border-width: 2;");
+            if (btn != activeMenuButton) {
+                if (color.equals("#e74c3c")) {
+                    btn.setStyle("-fx-font-size: 13; -fx-padding: 12; -fx-background-color: #c0392b; -fx-text-fill: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-font-weight: bold; -fx-cursor: hand;");
+                } else if (color.equals("#ff9500")) {
+                    btn.setStyle("-fx-font-size: 13; -fx-padding: 12; -fx-background-color: #188732; -fx-text-fill: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-font-weight: bold; -fx-cursor: hand;");
+                } else {
+                    btn.setStyle("-fx-font-size: 13; -fx-padding: 12; -fx-background-color: #2c3e50; -fx-text-fill: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-font-weight: bold; -fx-cursor: hand; -fx-border-color: #ff9500; -fx-border-width: 2;");
+                }
             }
         });
         
         btn.setOnMouseExited(e -> {
-            btn.setStyle("-fx-font-size: 13; -fx-padding: 12; -fx-background-color: " + color + "; -fx-text-fill: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-font-weight: bold; -fx-cursor: hand;");
+            if (btn != activeMenuButton) {
+                btn.setStyle("-fx-font-size: 13; -fx-padding: 12; -fx-background-color: " + color + "; -fx-text-fill: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-font-weight: bold; -fx-cursor: hand;");
+            }
         });
         
         return btn;
+    }
+    
+    private void setActiveMenuButton(Button btn, String color) {
+        // Reset previous active button to original color
+        if (activeMenuButton != null && activeMenuButton != btn) {
+            // Determine original color based on button
+            String originalColor = activeMenuColor;
+            if (activeMenuColor.equals("#ff9500") && !color.equals("#ff9500")) {
+                originalColor = "#34495e";
+            }
+            activeMenuButton.setStyle("-fx-font-size: 13; -fx-padding: 12; -fx-background-color: " + originalColor + "; -fx-text-fill: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-font-weight: bold; -fx-cursor: hand;");
+        }
+        
+        // Set new active button with highlight color
+        String activeColor = "#ff9500";
+        if (color.equals("#e74c3c")) {
+            activeColor = "#c0392b";
+        }
+        btn.setStyle("-fx-font-size: 13; -fx-padding: 12; -fx-background-color: " + activeColor + "; -fx-text-fill: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-font-weight: bold; -fx-cursor: hand;");
+        
+        activeMenuButton = btn;
+        activeMenuColor = color;
     }
 
     private void showDashboard() {
