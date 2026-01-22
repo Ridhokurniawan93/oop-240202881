@@ -7,7 +7,7 @@ public class JdbcConnection {
 
     private static final String URL = "jdbc:postgresql://localhost:5432/agripos";
     private static final String USER = "postgres";
-    private static final String PASSWORD = "242424";
+    private static final String PASSWORD = "339521";
 
     public static Connection getConnection() {
         try {

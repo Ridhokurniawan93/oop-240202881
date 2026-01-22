@@ -26,4 +26,19 @@ public class ProductDAOImpl implements ProductDAO {
     public List<Product> findAll() {
         return products;
     }
+
+    @Override
+    public void update(Product product) {
+        for (int i = 0; i < products.size(); i++) {
+            if (products.get(i).getId().equals(product.getId())) {
+                products.set(i, product);
+                return;
+            }
+        }
+    }
+
+    @Override
+    public void delete(String id) {
+        products.removeIf(p -> p.getId().equals(id));
+    }
 }

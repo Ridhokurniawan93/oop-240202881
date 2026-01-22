@@ -28,4 +28,12 @@ public class ProductService {
             p.reduceStock(qty);
         }
     }
+
+    public void updateProduct(Product product) {
+        productDAO.update(product);
+    }
+
+    public void deleteProduct(String id) {
+        productDAO.delete(id);
+    }
 }

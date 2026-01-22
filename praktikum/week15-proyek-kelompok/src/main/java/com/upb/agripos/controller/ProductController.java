@@ -29,4 +29,13 @@ public class ProductController {
     public void updateStock(String productId, int newStock) {
         productService.updateStock(productId, newStock);
     }
+
+    public void updateProduct(String id, String name, double price, int stock) {
+        Product product = new Product(id, name, price, stock);
+        productService.updateProduct(product);
+    }
+
+    public void deleteProduct(String id) {
+        productService.deleteProduct(id);
+    }
 }

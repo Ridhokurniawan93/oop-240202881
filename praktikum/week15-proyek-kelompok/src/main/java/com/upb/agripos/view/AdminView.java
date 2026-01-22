@@ -6,6 +6,7 @@ import com.upb.agripos.model.Product;
 import com.upb.agripos.model.Promo;
 import com.upb.agripos.model.Transaction;
 import com.upb.agripos.repository.DataRepository;
+import com.upb.agripos.service.ProductService;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,6 +37,7 @@ public class AdminView {
     private TableView<Product> currentProductTable;
     private TableView<Promo> currentPromoTable;
     private final DataRepository dataRepository = DataRepository.getInstance();
+    private final ProductService productService = new ProductService();
     
     // Gunakan data dari repository yang shared
     private final ObservableList<Product> products = dataRepository.getProducts();
@@ -72,7 +74,7 @@ public class AdminView {
 
     private VBox createHeader() {
         VBox header = new VBox(8);
-        header.setStyle("-fx-background-color: linear-gradient(to bottom, #ff9500, #e68400); -fx-padding: 20px;");
+        header.setStyle("-fx-background-color: linear-gradient(to bottom, #00df16c1, #55a32b); -fx-padding: 20px;");
         
         Label titleLabel = new Label("🛒 AgriPOS - Admin Dashboard");
         titleLabel.setFont(Font.font("System", FontWeight.BOLD, 28));
@@ -293,31 +295,45 @@ public class AdminView {
         
         // Name column
         TableColumn<Product, String> nameCol = new TableColumn<>("Nama Produk");
-        nameCol.setPrefWidth(150);
+        nameCol.setPrefWidth(180);
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        nameCol.setStyle("-fx-alignment: CENTER-LEFT;");
         
         // Price column
         TableColumn<Product, Double> priceCol = new TableColumn<>("Harga");
-        priceCol.setPrefWidth(100);
+        priceCol.setPrefWidth(130);
         priceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
-        priceCol.setStyle("-fx-alignment: CENTER-RIGHT;");
+        priceCol.setCellFactory(col -> new javafx.scene.control.TableCell<Product, Double>() {
+            @Override
+            protected void updateItem(Double item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(String.format("Rp %,.0f", item));
+                }
+            }
+        });
+        priceCol.setStyle("-fx-alignment: CENTER-LEFT; -fx-text-alignment: left;");
         
         // Stock column
         TableColumn<Product, Integer> stockCol = new TableColumn<>("Stok");
-        stockCol.setPrefWidth(80);
+        stockCol.setPrefWidth(100);
         stockCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         stockCol.setStyle("-fx-alignment: CENTER;");
         
         // Action column
         TableColumn<Product, Void> actionCol = new TableColumn<>("Aksi");
-        actionCol.setPrefWidth(120);
+        actionCol.setPrefWidth(180);
         actionCol.setCellFactory(param -> new javafx.scene.control.TableCell<Product, Void>() {
             private final Button editBtn = new Button("Edit");
             private final Button deleteBtn = new Button("Hapus");
             
             {
-                editBtn.setStyle("-fx-font-size: 10; -fx-padding: 5; -fx-background-color: #3498db; -fx-text-fill: white;");
-                deleteBtn.setStyle("-fx-font-size: 10; -fx-padding: 5; -fx-background-color: #e74c3c; -fx-text-fill: white;");
+                editBtn.setStyle("-fx-font-size: 11; -fx-padding: 8 15 8 15; -fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 3; -fx-background-radius: 3;");
+                deleteBtn.setStyle("-fx-font-size: 11; -fx-padding: 8 15 8 15; -fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-border-radius: 3; -fx-background-radius: 3;");
+                editBtn.setPrefWidth(65);
+                deleteBtn.setPrefWidth(65);
                 
                 editBtn.setOnAction(e -> {
                     Product product = getTableView().getItems().get(getIndex());
@@ -327,6 +343,7 @@ public class AdminView {
                 deleteBtn.setOnAction(e -> {
                     Product product = getTableView().getItems().get(getIndex());
                     if (showConfirmDialog("Hapus Produk", "Apakah Anda yakin ingin menghapus produk ini?")) {
+                        productService.deleteProduct(product.getId());
                         products.remove(product);
                         showInfo("Produk berhasil dihapus");
                     }
@@ -339,7 +356,8 @@ public class AdminView {
                 if (empty) {
                     setGraphic(null);
                 } else {
-                    HBox hbox = new HBox(5);
+                    HBox hbox = new HBox(8);
+                    hbox.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
                     hbox.getChildren().addAll(editBtn, deleteBtn);
                     setGraphic(hbox);
                 }
@@ -348,6 +366,7 @@ public class AdminView {
         
         table.getColumns().addAll(noCol, codeCol, nameCol, priceCol, stockCol, actionCol);
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        table.setStyle("-fx-font-size: 12; -fx-row-height: 40;");
         
         return table;
     }
@@ -369,7 +388,7 @@ public class AdminView {
         nameField.setPrefHeight(35);
         
         TextField priceField = new TextField();
-        priceField.setPromptText("Harga");
+        priceField.setPromptText("Harga (contoh: 12000)");
         priceField.setPrefHeight(35);
         
         TextField stockField = new TextField();
@@ -384,7 +403,9 @@ public class AdminView {
             try {
                 String code = codeField.getText();
                 String name = nameField.getText();
-                double price = Double.parseDouble(priceField.getText());
+                // Hapus pemisah ribuan (titik) sebelum parsing
+                String priceStr = priceField.getText().replaceAll("\\.", "");
+                double price = Double.parseDouble(priceStr);
                 int stock = Integer.parseInt(stockField.getText());
                 
                 if (code.isEmpty() || name.isEmpty()) {
@@ -393,6 +414,7 @@ public class AdminView {
                 }
                 
                 Product newProduct = new Product(code, name, price, stock);
+                productService.addProduct(newProduct);
                 products.add(newProduct);
                 alert.close();
                 showInfo("Produk berhasil ditambahkan!");
@@ -426,8 +448,8 @@ public class AdminView {
         nameField.setPromptText("Nama Produk");
         nameField.setPrefHeight(35);
         
-        TextField priceField = new TextField(String.valueOf(product.getPrice()));
-        priceField.setPromptText("Harga");
+        TextField priceField = new TextField(String.format("%.0f", product.getPrice()));
+        priceField.setPromptText("Harga (contoh: 12000)");
         priceField.setPrefHeight(35);
         
         TextField stockField = new TextField(String.valueOf(product.getStock()));
@@ -446,8 +468,13 @@ public class AdminView {
                 }
                 
                 product.setName(nameField.getText());
-                product.setPrice(Double.parseDouble(priceField.getText()));
+                // Hapus pemisah ribuan (titik) sebelum parsing
+                String priceStr = priceField.getText().replaceAll("\\.", "");
+                product.setPrice(Double.parseDouble(priceStr));
                 product.setStock(Integer.parseInt(stockField.getText()));
+                
+                // Panggil service untuk update ke database/DAO
+                productService.updateProduct(product);
                 
                 // Refresh table view
                 if (currentProductTable != null) {
@@ -455,7 +482,7 @@ public class AdminView {
                 }
                 
                 alert.close();
-                showInfo("Produk berhasil diperbarui!");
+                showInfo("Produk berhasil di perbarui");
                 
             } catch (NumberFormatException ex) {
                 showError("Harga dan stok harus berupa angka!");
@@ -963,5 +990,37 @@ public class AdminView {
             }
         }
         return sb.toString();
+    }
+
+    private void showSuccessNotification(String message) {
+        // Create notification pane
+        javafx.scene.layout.VBox notificationBox = new javafx.scene.layout.VBox();
+        notificationBox.setStyle("-fx-background-color: #2ecc71; -fx-padding: 15; -fx-border-radius: 5; -fx-background-radius: 5;");
+        notificationBox.setPrefWidth(350);
+        notificationBox.setMaxHeight(60);
+        
+        Label notificationLabel = new Label(message);
+        notificationLabel.setStyle("-fx-font-size: 14; -fx-text-fill: #ffffff; -fx-font-weight: bold;");
+        notificationBox.getChildren().add(notificationLabel);
+        
+        // Create popup
+        javafx.stage.Popup popup = new javafx.stage.Popup();
+        popup.getContent().add(notificationBox);
+        
+        // Position at top right
+        popup.setX(stage.getX() + stage.getWidth() - 370);
+        popup.setY(stage.getY() + 20);
+        
+        // Show popup
+        popup.show(stage);
+        
+        // Auto hide after 3 seconds
+        javafx.animation.Timeline timeline = new javafx.animation.Timeline(
+            new javafx.animation.KeyFrame(
+                javafx.util.Duration.seconds(3),
+                e -> popup.hide()
+            )
+        );
+        timeline.play();
     }
 }

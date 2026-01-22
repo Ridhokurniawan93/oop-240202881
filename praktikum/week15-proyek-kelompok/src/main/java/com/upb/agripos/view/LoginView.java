@@ -10,6 +10,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -33,7 +35,7 @@ public class LoginView {
         
         // ========== HEADER ==========
         VBox header = new VBox(0);
-        header.setStyle("-fx-background-color: linear-gradient(to bottom, #ff9500, #e68400); -fx-padding: 35px 25px; -fx-border-color: #f0f0f0; -fx-border-width: 0 0 1 0;");
+        header.setStyle("-fx-background-color: linear-gradient(to bottom, #00df16c1, #55a32b); -fx-padding: 35px 25px; -fx-border-color: #f0f0f0; -fx-border-width: 0 0 1 0;");
         
         // Logo keranjang dengan styling profesional
         Text cartIcon = new Text("🛒");
@@ -106,8 +108,20 @@ public class LoginView {
         passVisibleField.setManaged(false);
         HBox.setHgrow(passVisibleField, Priority.ALWAYS);
 
-        Button togglePassBtn = new Button("👁\u0335");
-        togglePassBtn.setStyle("-fx-font-size: 16; -fx-padding: 0; -fx-background-color: transparent; -fx-border-color: transparent; -fx-cursor: hand;");
+        Button togglePassBtn = new Button();
+        try {
+            // Load SVG file dari resources
+            String iconPath = getClass().getResource("/eye-icon.svg").toExternalForm();
+            ImageView eyeIcon = new ImageView(new Image(iconPath));
+            eyeIcon.setFitHeight(20);
+            eyeIcon.setFitWidth(20);
+            eyeIcon.setSmooth(true);
+            togglePassBtn.setGraphic(eyeIcon);
+        } catch (Exception e) {
+            togglePassBtn.setText("👁"); // Fallback jika SVG tidak ditemukan
+            togglePassBtn.setStyle("-fx-font-size: 14;");
+        }
+        togglePassBtn.setStyle("-fx-padding: 0; -fx-background-color: transparent; -fx-border-color: transparent; -fx-cursor: hand;");
         togglePassBtn.setPrefHeight(40);
         togglePassBtn.setPrefWidth(40);
         togglePassBtn.setPadding(new Insets(0, 12, 0, 0));
@@ -124,7 +138,6 @@ public class LoginView {
                 passField.setManaged(false);
                 passVisibleField.setVisible(true);
                 passVisibleField.setManaged(true);
-                togglePassBtn.setText("👁️");+~
             } else {
                 // Hide password
                 passField.setText(passVisibleField.getText());
@@ -132,7 +145,6 @@ public class LoginView {
                 passVisibleField.setManaged(false);
                 passField.setVisible(true);
                 passField.setManaged(true);
-                togglePassBtn.setText("👁\u0335");
             }
         });
         

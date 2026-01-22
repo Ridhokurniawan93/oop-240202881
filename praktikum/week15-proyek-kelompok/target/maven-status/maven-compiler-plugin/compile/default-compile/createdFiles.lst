@@ -8,6 +8,7 @@ com\upb\agripos\service\PaymentMethod.class
 com\upb\agripos\view\MainApp.class
 com\upb\agripos\view\KasirView$2.class
 com\upb\agripos\model\Promo.class
+com\upb\agripos\view\AdminView$3.class
 com\upb\agripos\service\payment\EWalletPayment.class
 com\upb\agripos\exception\CartEmptyException.class
 com\upb\agripos\dao\ProductDAOImpl.class
