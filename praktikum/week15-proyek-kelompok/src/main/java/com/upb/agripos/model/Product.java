@@ -2,11 +2,14 @@ package com.upb.agripos.model;
 
 public class Product {
 
+    private int productId;
     private String code;
     private String name;
+    private String category;
     private double price;
     private int stock;
 
+    // Constructor
     public Product(String code, String name, double price, int stock) {
         this.code = code;
         this.name = name;
@@ -14,39 +17,38 @@ public class Product {
         this.stock = stock;
     }
 
-    public String getId() {
-        return code;
+    // getter & setter
+    public String getId() { return code; }
+    
+    public int getProductId() { return productId; }
+    public void setProductId(int productId) { this.productId = productId; }
+
+    public String getCode() { return code; }
+    public void setCode(String code) { this.code = code; }
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public String getCategory() { return category; }
+    public void setCategory(String category) { this.category = category; }
+
+    public double getPrice() { return price; }
+    public void setPrice(double price) { this.price = price; }
+
+    public int getStock() { return stock; }
+    public void setStock(int stock) { this.stock = stock; }
+
+    // Method to reduce stock
+    public void reduceStock(int quantity) {
+        if (quantity <= stock) {
+            stock -= quantity;
+        } else {
+            throw new IllegalArgumentException("Not enough stock available");
+        }
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
-
-    public void reduceStock(int qty) {
-        this.stock -= qty;
-    }
-
-    public void addStock(int qty) {
-        this.stock += qty;
+    // Method to add stock
+    public void addStock(int quantity) {
+        stock += quantity;
     }
 }

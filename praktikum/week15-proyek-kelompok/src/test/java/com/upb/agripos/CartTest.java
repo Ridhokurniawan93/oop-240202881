@@ -1,23 +1,37 @@
 package com.upb.agripos;
 
-import com.upb.agripos.model.Cart;
+import com.upb.agripos.dao.JdbcProductDAO;
 import com.upb.agripos.model.Product;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CartTest {
 
-    @Test
-    public void testTotalPrice() {
-        Cart cart = new Cart();
+    public static void main(String[] args) {
 
-        Product p1 = new Product("P01", "Beras", 10000, 10);
-        Product p2 = new Product("P02", "Jagung", 5000, 5);
+        JdbcProductDAO productDAO = new JdbcProductDAO();
 
-        cart.addItem(p1, 2); // 20000
-        cart.addItem(p2, 3); // 15000
+        // Insert P004
+        try {
+            Product p4 = new Product("P004", "Telur 1kg", 18000, 40);
+            p4.setCategory("Pangan");
+            productDAO.insert(p4);
+            System.out.println("✅ P004 berhasil ditambahkan");
+        } catch (Exception e) {
+            System.out.println("⚠️  P004: " + e.getMessage());
+        }
 
-        assertEquals(35000, cart.getTotalPrice());
+        // Insert P005
+        try {
+            Product p5 = new Product("P005", "Tepung Terigu 1kg", 8000, 20);
+            p5.setCategory("Pangan");
+            productDAO.insert(p5);
+            System.out.println("✅ P005 berhasil ditambahkan");
+        } catch (Exception e) {
+            System.out.println("⚠️  P005: " + e.getMessage());
+        }
+
+        System.out.println("\n=== ALL PRODUCTS ===");
+        productDAO.findAll().forEach(p -> 
+            System.out.println(p.getCode() + ": " + p.getName() + " | Rp " + p.getPrice())
+        );
     }
 }

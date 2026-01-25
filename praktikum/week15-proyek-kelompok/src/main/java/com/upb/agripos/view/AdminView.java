@@ -1,6 +1,7 @@
 package com.upb.agripos.view;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import com.upb.agripos.model.Product;
 import com.upb.agripos.model.Promo;
@@ -51,6 +52,11 @@ public class AdminView {
     public AdminView(Stage stage, String username) {
         this.stage = stage;
         this.username = username;
+        
+        // Load products from database - clear first to avoid duplicates
+        products.clear();
+        List<Product> dbProducts = productService.getAllProducts();
+        products.addAll(dbProducts);
     }
 
     public void show() {
@@ -147,7 +153,7 @@ public class AdminView {
                 if (color.equals("#e74c3c")) {
                     btn.setStyle("-fx-font-size: 13; -fx-padding: 12; -fx-background-color: #c0392b; -fx-text-fill: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-font-weight: bold; -fx-cursor: hand;");
                 } else if (color.equals("#ff9500")) {
-                    btn.setStyle("-fx-font-size: 13; -fx-padding: 12; -fx-background-color: #188732; -fx-text-fill: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-font-weight: bold; -fx-cursor: hand;");
+                    btn.setStyle("-fx-font-size: 13; -fx-padding: 12; -fx-background-color: #ff9500; -fx-text-fill: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-font-weight: bold; -fx-cursor: hand;");
                 } else {
                     btn.setStyle("-fx-font-size: 13; -fx-padding: 12; -fx-background-color: #2c3e50; -fx-text-fill: white; -fx-border-radius: 5; -fx-background-radius: 5; -fx-font-weight: bold; -fx-cursor: hand; -fx-border-color: #ff9500; -fx-border-width: 2;");
                 }
@@ -423,6 +429,10 @@ public class AdminView {
         nameField.setPromptText("Nama Produk");
         nameField.setPrefHeight(35);
         
+        TextField categoryField = new TextField();
+        categoryField.setPromptText("Kategori (misal: Pangan)");
+        categoryField.setPrefHeight(35);
+        
         TextField priceField = new TextField();
         priceField.setPromptText("Harga (contoh: 12000)");
         priceField.setPrefHeight(35);
@@ -439,19 +449,26 @@ public class AdminView {
             try {
                 String code = codeField.getText();
                 String name = nameField.getText();
+                String category = categoryField.getText();
                 // Hapus pemisah ribuan (titik) sebelum parsing
                 String priceStr = priceField.getText().replaceAll("\\.", "");
                 double price = Double.parseDouble(priceStr);
                 int stock = Integer.parseInt(stockField.getText());
                 
-                if (code.isEmpty() || name.isEmpty()) {
-                    showError("Kode dan nama produk tidak boleh kosong!");
+                if (code.isEmpty() || name.isEmpty() || category.isEmpty()) {
+                    showError("Kode, nama, dan kategori produk tidak boleh kosong!");
                     return;
                 }
                 
                 Product newProduct = new Product(code, name, price, stock);
+                newProduct.setCategory(category);
                 productService.addProduct(newProduct);
-                products.add(newProduct);
+                
+                // Reload dari database
+                products.clear();
+                List<Product> dbProducts = productService.getAllProducts();
+                products.addAll(dbProducts);
+                
                 alert.close();
                 showInfo("Produk berhasil ditambahkan!");
                 
@@ -463,6 +480,7 @@ public class AdminView {
         formBox.getChildren().addAll(
             new Label("Kode Barang:"), codeField,
             new Label("Nama Produk:"), nameField,
+            new Label("Kategori:"), categoryField,
             new Label("Harga:"), priceField,
             new Label("Stok:"), stockField,
             saveBtn

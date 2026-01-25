@@ -6,6 +6,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "TestInsertProduct",
+            "request": "launch",
+            "mainClass": "test.java.com.upb.agripos.TestInsertProduct",
+            "projectName": ""
+        },
+        {
+            "type": "java",
+            "name": "TestConnection",
+            "request": "launch",
+            "mainClass": "com.upb.agripos.TestConnection",
+            "projectName": ""
+        },
+        {
+            "type": "java",
+            "name": "TestConnection",
+            "request": "launch",
+            "mainClass": "main.java.com.upb.agripos.TestConnection",
+            "projectName": ""
+        },
+        {
+            "type": "java",
             "name": "MainApp",
             "request": "launch",
             "mainClass": "com.upb.agripos.MainApp",

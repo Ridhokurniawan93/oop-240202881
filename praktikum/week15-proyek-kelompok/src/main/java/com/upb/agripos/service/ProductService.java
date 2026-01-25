@@ -2,13 +2,13 @@ package com.upb.agripos.service;
 
 import java.util.List;
 
+import com.upb.agripos.dao.JdbcProductDAO;
 import com.upb.agripos.dao.ProductDAO;
-import com.upb.agripos.dao.ProductDAOImpl;
 import com.upb.agripos.model.Product;
 
 public class ProductService {
 
-    private final ProductDAO productDAO = new ProductDAOImpl();
+    private final ProductDAO productDAO = new JdbcProductDAO();
 
     public void addProduct(Product product) {
         productDAO.save(product);
